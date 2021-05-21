@@ -65,6 +65,16 @@ class DB {
 		return query(searchQuery);
 	}
 
+    getManagers() {
+		let searchQuery =
+			"SELECT employee.id, CONCAT(first_name, ' ', last_name) AS name ";
+		searchQuery += "FROM employee ";
+		searchQuery += "INNER JOIN role ON employee.role_id = role.id ";
+		searchQuery += "WHERE role.title LIKE '%Lead%'";
+
+		return query(searchQuery);
+	}
+
 }
 
 module.exports = new DB();
