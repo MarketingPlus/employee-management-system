@@ -183,3 +183,12 @@ const addRolePrompt = choices => {
 		},
 	]);
 };
+
+const removeRolePrompt = choices => {
+	return inquirer.prompt({
+		name: "role",
+		type: "list",
+		message: "Which role do you want to remove?",
+		choices,
+	});
+};
