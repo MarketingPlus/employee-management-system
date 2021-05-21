@@ -119,6 +119,12 @@ class DB {
 		const updateQuery = "UPDATE employee SET manager_id = ? WHERE id = ?";
 		return query(updateQuery, [managerId, employeeId]);
 	}
+
+    // DELETES THE DATA FROM THE DB
+    deleteEmployee(employeeId) {
+		const deleteQuery = "DELETE FROM employee WHERE id = ?";
+		return query(deleteQuery, employeeId);
+	}
 }
 
 module.exports = new DB();
