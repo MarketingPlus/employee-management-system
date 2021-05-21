@@ -43,6 +43,15 @@ class DB {
 
 		return query(searchQuery, answer);
 	}
+    viewRoles() {
+		let searchQuery =
+			"SELECT title AS Title, salary AS Salary, name AS Department ";
+		searchQuery += "FROM role ";
+		searchQuery +=
+			"INNER JOIN department ON role.department_id = department.id ";
+
+		return query(searchQuery);
+	}
 }
 
 module.exports = new DB();
