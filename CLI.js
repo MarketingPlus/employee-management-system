@@ -106,3 +106,20 @@ const removeEmployeePrompt = choices => {
 		choices,
 	});
 };
+
+const updateRolePrompt = (employeeChoices, roleChoices) => {
+	return inquirer.prompt([
+		{
+			name: "employee",
+			type: "list",
+			message: "Which employee would you like to update?",
+			choices: employeeChoices,
+		},
+		{
+			name: "role",
+			type: "list",
+			message: "Which role should they be assigned?",
+			choices: roleChoices,
+		},
+	]);
+};
