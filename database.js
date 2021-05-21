@@ -103,6 +103,11 @@ class DB {
 		const insertQuery = "INSERT INTO role SET ?";
 		return query(insertQuery, role);
 	}
+
+    addDepartment(department) {
+		const insertQuery = "INSERT INTO department (name) VALUES (?)";
+		return query(insertQuery, department);
+	}
 }
 
 module.exports = new DB();
