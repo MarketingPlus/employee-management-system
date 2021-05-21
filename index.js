@@ -301,3 +301,15 @@ const viewDepartments = async () => {
 		throw err;
 	}
 };
+
+const addDepartment = async () => {
+	try {
+		const answer = await addDepartmentPrompt();
+
+		database.addDepartment(answer.name);
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
