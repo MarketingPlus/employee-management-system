@@ -87,3 +87,64 @@ const viewByDept = async () => {
 		throw err;
 	}
 };
+
+const viewByManager = async () => {
+	try {
+		const query = await database.getManagers();
+
+		const choices = query.map(manager => manager.name);
+
+		const answer = await viewByManagerPrompt(choices);
+
+		viewEmployees("manager", answer.manager);
+	} catch (err) {
+		throw err;
+	}
+};
+
+const addEmployee = async () => {
+	try {
+		const roleQuery = await database.getRoles();
+		const managerQuery = await database.getManagers();
+
+		const roles = roleQuery.map(role => {
+			return { id: role.id, title: role.title };
+		});
+
+		const roleChoices = roleQuery.map(role => role.title);
+
+		const managers = [
+			...managerQuery.map(manager => {
+				return { id: manager.id, name: manager.name };
+			}),
+			{ id: 0, name: "No Manager" },
+		];
+
+		const managerChoices = [
+			...managerQuery.map(manager => manager.name),
+			"No Manager",
+		];
+
+		const answer = await addEmployeePrompt(roleChoices, managerChoices);
+
+		const role = roles.find(role => role.title === answer.role);
+		const roleId = role.id;
+		const manager = managers.find(manager => manager.name === answer.manager);
+		const managerId = manager.id;
+		const employee = {
+			first_name: answer.firstName.trim(),
+			last_name: answer.lastName.trim(),
+			role_id: roleId,
+		};
+
+		if (managerId !== 0) {
+			employee["manager_id"] = managerId;
+		}
+
+		database.addEmployee(employee);
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
