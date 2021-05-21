@@ -125,6 +125,12 @@ class DB {
 		const deleteQuery = "DELETE FROM employee WHERE id = ?";
 		return query(deleteQuery, employeeId);
 	}
+
+    deleteRole(roleId) {
+		const deleteQuery = "DELETE FROM role WHERE id = ?";
+		return query(deleteQuery, roleId);
+	}
+
 }
 
 module.exports = new DB();
