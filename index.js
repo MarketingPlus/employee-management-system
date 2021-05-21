@@ -338,3 +338,30 @@ const removeDepartment = async () => {
 		throw err;
 	}
 };
+
+const viewBudget = async () => {
+	try {
+		const query = await database.getDepartments();
+
+		const departments = query.map(department => {
+			return { id: department.id, name: department.name };
+		});
+
+		const choices = query.map(department => department.name);
+
+		const answer = await viewBudgetPrompt(choices);
+
+		const department = departments.find(
+			department => department.name === answer.department
+		);
+		const departmentId = department.id;
+
+		console.table(await database.getBudget(departmentId));
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
+
+runSearch();
