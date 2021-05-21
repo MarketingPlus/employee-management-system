@@ -229,3 +229,18 @@ const viewBudgetPrompt = choices => {
 		choices,
 	});
 };
+
+module.exports = {
+	runSearchPrompt,
+	viewByDeptPrompt,
+	viewByManagerPrompt,
+	addEmployeePrompt,
+	removeEmployeePrompt,
+	updateRolePrompt,
+	updateManagerPrompt,
+	addRolePrompt,
+	removeRolePrompt,
+	addDepartmentPrompt,
+	removeDepartmentPrompt,
+	viewBudgetPrompt,
+};
