@@ -75,6 +75,15 @@ class DB {
 		return query(searchQuery);
 	}
 
+    getRoles() {
+		return query("SELECT id, title FROM role");
+	}
+
+	getDepartments() {
+		return query("SELECT id, name FROM department");
+	}
+
+    
 }
 
 module.exports = new DB();
