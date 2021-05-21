@@ -131,6 +131,10 @@ class DB {
 		return query(deleteQuery, roleId);
 	}
 
+    deleteDepartment(departmentId) {
+		const deleteQuery = "DELETE FROM department WHERE id = ?";
+		return query(deleteQuery, departmentId);
+	}
 }
 
 module.exports = new DB();
