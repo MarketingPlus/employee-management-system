@@ -98,6 +98,11 @@ class DB {
 		const insertQuery = "INSERT INTO employee SET ?";
 		return query(insertQuery, employee);
 	}
+
+    addRole(role) {
+		const insertQuery = "INSERT INTO role SET ?";
+		return query(insertQuery, role);
+	}
 }
 
 module.exports = new DB();
