@@ -220,3 +220,12 @@ const removeDepartmentPrompt = choices => {
 		choices,
 	});
 };
+
+const viewBudgetPrompt = choices => {
+	return inquirer.prompt({
+		name: "department",
+		type: "list",
+		message: "Which department budget would you like to view?",
+		choices,
+	});
+};
