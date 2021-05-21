@@ -94,6 +94,10 @@ class DB {
 	}
 
     // CREATES NEW DATA FOR THE DATABASE
+    addEmployee(employee) {
+		const insertQuery = "INSERT INTO employee SET ?";
+		return query(insertQuery, employee);
+	}
 }
 
 module.exports = new DB();
