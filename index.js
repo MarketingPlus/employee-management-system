@@ -74,3 +74,16 @@ const viewEmployees = async (type, answer) => {
 	}
 };
 
+const viewByDept = async () => {
+	try {
+		const query = await database.getDepartments();
+
+		const choices = query.map(department => department.name);
+
+		const answer = await viewByDeptPrompt(choices);
+
+		viewEmployees("department", answer.department);
+	} catch (err) {
+		throw err;
+	}
+};
