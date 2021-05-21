@@ -207,3 +207,46 @@ const updateRole = async () => {
 		throw err;
 	}
 };
+
+const updateManager = async () => {
+	try {
+		const employeeQuery = await database.getEmployees();
+		const managerQuery = await database.getManagers();
+
+		const employees = employeeQuery.map(employee => {
+			return { id: employee.id, name: employee.name };
+		});
+		const employeeChoices = employeeQuery.map(employee => employee.name);
+
+		const managers = [
+			...managerQuery.map(manager => {
+				return { id: manager.id, name: manager.name };
+			}),
+			{ id: 0, name: "No Manager" },
+		];
+
+		const managerChoices = [
+			...managerQuery.map(manager => manager.name),
+			"No Manager",
+		];
+
+		const answer = await updateManagerPrompt(employeeChoices, managerChoices);
+
+		const employee = employees.find(
+			employee => employee.name === answer.employee
+		);
+		const employeeId = employee.id;
+		const manager = managers.find(manager => manager.name === answer.manager);
+		const managerId = manager.id;
+
+		if (managerId === 0) {
+			database.updateEmployeeManager(null, employeeId);
+		} else {
+			database.updateEmployeeManager(managerId, employeeId);
+		}
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
