@@ -148,3 +148,29 @@ const addEmployee = async () => {
 		throw err;
 	}
 };
+
+const removeEmployee = async () => {
+	try {
+		const query = await database.getEmployees();
+
+		const employees = query.map(employee => {
+			return { id: employee.id, name: employee.name };
+		});
+
+		const choices = query.map(employee => employee.name);
+
+		const answer = await removeEmployeePrompt(choices);
+
+		const employee = employees.find(
+			employee => employee.name === answer.employee
+		);
+
+		const employeeId = employee.id;
+
+		database.deleteEmployee(employeeId);
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
