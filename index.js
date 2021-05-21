@@ -313,3 +313,28 @@ const addDepartment = async () => {
 		throw err;
 	}
 };
+
+const removeDepartment = async () => {
+	try {
+		const query = await database.getDepartments();
+
+		const departments = query.map(department => {
+			return { id: department.id, name: department.name };
+		});
+
+		const choices = query.map(department => department.name);
+
+		const answer = await removeDepartmentPrompt(choices);
+
+		const department = departments.find(
+			department => department.name === answer.department
+		);
+		const departmentId = department.id;
+
+		database.deleteDepartment(departmentId);
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
