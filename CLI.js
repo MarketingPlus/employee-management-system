@@ -39,3 +39,61 @@ const viewByDeptPrompt = choices => {
 		choices,
 	});
 };
+
+const viewByManagerPrompt = choices => {
+	return inquirer.prompt({
+		name: "manager",
+		type: "list",
+		message: "View by which manager?",
+		choices,
+	});
+};
+
+const addEmployeePrompt = (roleChoices, managerChoices) => {
+	return inquirer.prompt([
+		{
+			name: "firstName",
+			type: "input",
+			message: "First name: ",
+			validate(input) {
+				const regex = /[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]|\d/;
+
+				if (!input) {
+					return console.log("\nFirst name required");
+				} else if (input.match(regex)) {
+					return console.log("\nFirst name cannot include numbers or symbols");
+				}
+
+				return true;
+			},
+		},
+		{
+			name: "lastName",
+			type: "input",
+			message: "Last name: ",
+			validate(input) {
+				const regex = /[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]|\d/;
+
+				if (!input) {
+					return console.log("\nLast name required");
+				} else if (input.match(regex)) {
+					return console.log("\nLast name cannot include numbers or symbols");
+				}
+
+				return true;
+			},
+		},
+		{
+			name: "role",
+			type: "list",
+			message: "Role: ",
+			choices: roleChoices,
+		},
+		{
+			name: "manager",
+			type: "list",
+			message: "Manager: ",
+			choices: managerChoices,
+		},
+	]);
+};
