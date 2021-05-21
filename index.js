@@ -174,3 +174,36 @@ const removeEmployee = async () => {
 		throw err;
 	}
 };
+
+const updateRole = async () => {
+	try {
+		const employeeQuery = await database.getEmployees();
+		const roleQuery = await database.getRoles();
+
+		const employees = employeeQuery.map(employee => {
+			return { id: employee.id, name: employee.name };
+		});
+		const employeeChoices = employeeQuery.map(employee => employee.name);
+
+		const roles = roleQuery.map(role => {
+			return { id: role.id, title: role.title };
+		});
+
+		const roleChoices = roleQuery.map(role => role.title);
+
+		const answer = await updateRolePrompt(employeeChoices, roleChoices);
+
+		const employee = employees.find(
+			employee => employee.name === answer.employee
+		);
+		const employeeId = employee.id;
+		const role = roles.find(role => role.title === answer.role);
+		const roleId = role.id;
+
+		database.updateEmployeeRole(roleId, employeeId);
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
