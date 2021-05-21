@@ -8,3 +8,10 @@ const connection = mysql.createConnection({
 	password: "root",
 	database: "employee_tracker",
 });
+
+connection.connect(err => {
+	if (err) {
+		return console.error(`error connecting: ${err.stack}`);
+	}
+	console.log(`connected as id ${connection.threadId}`);
+});
