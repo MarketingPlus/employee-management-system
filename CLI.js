@@ -97,3 +97,12 @@ const addEmployeePrompt = (roleChoices, managerChoices) => {
 		},
 	]);
 };
+
+const removeEmployeePrompt = choices => {
+	return inquirer.prompt({
+		name: "employee",
+		type: "list",
+		message: "Which employee do you want to remove?",
+		choices,
+	});
+};
