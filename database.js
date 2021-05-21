@@ -108,6 +108,13 @@ class DB {
 		const insertQuery = "INSERT INTO department (name) VALUES (?)";
 		return query(insertQuery, department);
 	}
+
+    // UPDATES DATA ALREADY IN THE DATA BASE
+    updateEmployeeRole(roleId, employeeId) {
+		const updateQuery = "UPDATE employee SET role_id = ? WHERE id = ?";
+		return query(updateQuery, [roleId, employeeId]);
+	}
+
 }
 
 module.exports = new DB();
