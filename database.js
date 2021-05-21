@@ -19,7 +19,7 @@ connection.connect(err => {
 const query = util.promisify(connection.query.bind(connection));
 
 class DB {
-	// READ
+	// DISPLAYS ALL DIFFERENT VALUES FROM THE DATABASE
 	viewEmployees(type, answer) {
 		let searchQuery =
 			"SELECT e.id, e.first_name AS 'First Name', e.last_name AS 'Last Name', title AS Title, ";
@@ -83,7 +83,17 @@ class DB {
 		return query("SELECT id, name FROM department");
 	}
 
-    
+    getBudget(departmentId) {
+		let searchQuery = "SELECT name AS Department, SUM(salary) AS Budget ";
+		searchQuery += "FROM department ";
+		searchQuery += "INNER JOIN role ON role.department_id = department.id ";
+		searchQuery += "INNER JOIN employee ON employee.role_id = role.id ";
+		searchQuery += "WHERE department.id = ?";
+
+		return query(searchQuery, departmentId);
+	}
+
+    // CREATES NEW DATA FOR THE DATABASE
 }
 
 module.exports = new DB();
