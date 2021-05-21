@@ -115,6 +115,10 @@ class DB {
 		return query(updateQuery, [roleId, employeeId]);
 	}
 
+    updateEmployeeManager(managerId, employeeId) {
+		const updateQuery = "UPDATE employee SET manager_id = ? WHERE id = ?";
+		return query(updateQuery, [managerId, employeeId]);
+	}
 }
 
 module.exports = new DB();
