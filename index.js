@@ -250,3 +250,12 @@ const updateManager = async () => {
 		throw err;
 	}
 };
+
+const viewRoles = async () => {
+	try {
+		console.table(await database.viewRoles());
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
