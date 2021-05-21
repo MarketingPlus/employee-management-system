@@ -192,3 +192,22 @@ const removeRolePrompt = choices => {
 		choices,
 	});
 };
+
+const addDepartmentPrompt = () => {
+	return inquirer.prompt({
+		name: "name",
+		type: "input",
+		message: "Name: ",
+		validate(input) {
+			const regex = /[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]|\d/;
+
+			if (!input) {
+				return console.log("\nName required");
+			} else if (input.match(regex)) {
+				return console.log("\nName cannot include numbers or symbols");
+			}
+
+			return true;
+		},
+	});
+};
