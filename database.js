@@ -52,6 +52,12 @@ class DB {
 
 		return query(searchQuery);
 	}
+
+    viewDepartments() {
+		const searchQuery = "SELECT name AS Department FROM department";
+		return query(searchQuery);
+	}
+
 }
 
 module.exports = new DB();
