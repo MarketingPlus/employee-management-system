@@ -58,6 +58,13 @@ class DB {
 		return query(searchQuery);
 	}
 
+    getEmployees() {
+		let searchQuery = "SELECT id, CONCAT(first_name, ' ', last_name) AS name ";
+		searchQuery += "FROM employee ";
+
+		return query(searchQuery);
+	}
+
 }
 
 module.exports = new DB();
