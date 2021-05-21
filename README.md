@@ -59,6 +59,8 @@ A node.js application that prompts users with a series of options which is used 
 
 - type the following command in the terminal `npm start`
 
+[![WATCH THE VIDEO DEMONSTATION](https://user-images.githubusercontent.com/77607177/116783743-d008ef80-aad3-11eb-81b0-2518f97816e5.png)](https://drive.google.com/file/d/1k-Ovn-GZc5Ie1IN8cpAMDHMm0bBqORdb/view?usp=sharing)
+
 <a name="questions"></a>
 
 ## QUESTIONS 📧
