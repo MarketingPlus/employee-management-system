@@ -30,3 +30,12 @@ const runSearchPrompt = () => {
 		],
 	});
 };
+
+const viewByDeptPrompt = choices => {
+	return inquirer.prompt({
+		name: "department",
+		type: "list",
+		message: "View by which department?",
+		choices,
+	});
+};
