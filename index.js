@@ -64,3 +64,13 @@ const runSearch = async () => {
 			break;
 	}
 };
+
+const viewEmployees = async (type, answer) => {
+	try {
+		console.table(await database.viewEmployees(type, answer));
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
+
