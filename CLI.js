@@ -211,3 +211,12 @@ const addDepartmentPrompt = () => {
 		},
 	});
 };
+
+const removeDepartmentPrompt = choices => {
+	return inquirer.prompt({
+		name: "department",
+		type: "list",
+		message: "Which department do you want to remove?",
+		choices,
+	});
+};
