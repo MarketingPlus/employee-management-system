@@ -292,3 +292,12 @@ const addRole = async () => {
 		throw err;
 	}
 };
+
+const viewDepartments = async () => {
+	try {
+		console.table(await database.viewDepartments());
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
