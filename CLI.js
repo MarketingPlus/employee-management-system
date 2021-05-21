@@ -140,3 +140,46 @@ const updateManagerPrompt = (employeeChoices, managerChoices) => {
 		},
 	]);
 };
+
+const addRolePrompt = choices => {
+	return inquirer.prompt([
+		{
+			name: "title",
+			type: "input",
+			message: "Title: ",
+			validate(input) {
+				const regex = /[-!@#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]|\d/;
+
+				if (!input) {
+					return console.log("\nTitle required");
+				} else if (input.match(regex)) {
+					return console.log("\nTitle cannot include numbers or symbols");
+				}
+
+				return true;
+			},
+		},
+		{
+			name: "salary",
+			type: "input",
+			message: "Salary: ",
+			validate(input) {
+				const regex = /\D/;
+
+				if (!input) {
+					return console.log("\nSalary required");
+				} else if (input.match(regex)) {
+					return console.log("\nSalary can only include numbers");
+				}
+
+				return true;
+			},
+		},
+		{
+			name: "department",
+			type: "list",
+			message: "Department: ",
+			choices,
+		},
+	]);
+};
