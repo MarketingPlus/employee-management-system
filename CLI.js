@@ -123,3 +123,20 @@ const updateRolePrompt = (employeeChoices, roleChoices) => {
 		},
 	]);
 };
+
+const updateManagerPrompt = (employeeChoices, managerChoices) => {
+	return inquirer.prompt([
+		{
+			name: "employee",
+			type: "list",
+			message: "Which employee would you like to update?",
+			choices: employeeChoices,
+		},
+		{
+			name: "manager",
+			type: "list",
+			message: "Which manager should they be assigned?",
+			choices: managerChoices,
+		},
+	]);
+};
