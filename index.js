@@ -293,6 +293,28 @@ const addRole = async () => {
 	}
 };
 
+const removeRole = async () => {
+	try {
+		const query = await database.getRoles();
+
+		const roles = query.map(role => {
+			return { id: role.id, title: role.title };
+		});
+		const choices = query.map(role => role.title);
+
+		const answer = await removeRolePrompt(choices);
+
+		const role = roles.find(role => role.title === answer.role);
+		const roleId = role.id;
+
+		database.deleteRole(roleId);
+
+		runSearch();
+	} catch (err) {
+		throw err;
+	}
+};
+
 const viewDepartments = async () => {
 	try {
 		console.table(await database.viewDepartments());
