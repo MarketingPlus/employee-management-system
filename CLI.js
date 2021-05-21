@@ -26,7 +26,7 @@ const runSearchPrompt = () => {
 			"View all departments",
 			"Add department",
 			"Remove department",
-			"View utilized budget by department",
+			"View utilised budget by department",
 		],
 	});
 };
